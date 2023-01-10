@@ -33,8 +33,6 @@ kubectl port-forward -n calculator-web-app svc/service-backend-calculator 8001:8
 
 Remark: If you run the code on a virtual server with no graphical interface, you can create ssh tunner for forwded port as follows:
 ```
-
-*Walter Simo*
 ssh -f username_Instance@IP_Instance -L 8000:localhost:8000 -N
 ssh -f username_Instance@IP_Instance -L 8001:localhost:8001 -N
 ```
@@ -43,3 +41,4 @@ ssh -f username_Instance@IP_Instance -L 8001:localhost:8001 -N
 ```
 http://localhost:8080
 ```
+*Walter Simo*
