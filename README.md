@@ -5,6 +5,13 @@
 * kubectl installed
 * helm installed
 
+## A. Clone of the Repo
+```
+git clone https://github.com/waltersimo/helm-package-web-calculator.git
+cd helm-package-web-calculator
+```
+
+## B. Installation and Deployment
 
 1. Installation with Helm
 Test
