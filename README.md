@@ -9,7 +9,7 @@
 1. Installation with Helm
 Test
 ```
-helm template calculator-web > all-in-one.yml
+helm template calculator-web-app > all-in-one.yml
 ```
 Installation
 ```
