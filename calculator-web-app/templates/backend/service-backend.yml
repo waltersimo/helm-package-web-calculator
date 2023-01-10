@@ -1,0 +1,17 @@
+# service to manage pods of backend
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-backend-calculator
+  namespace: {{ .Values.vars.namespace }}
+  labels:
+    {{- toYaml .Values.labelsbackend | nindent 4 }}
+spec:
+  type: {{ .Values.vars.backend.service.type }}
+  ports:
+  - port: {{ .Values.vars.backend.service.port }}
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    {{- toYaml .Values.labelsbackend | nindent 4 }}

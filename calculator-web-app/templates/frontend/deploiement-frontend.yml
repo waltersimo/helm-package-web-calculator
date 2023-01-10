@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-web
+  namespace: {{ .Values.vars.namespace }}
+  labels:
+    {{- toYaml .Values.labelsfrontend | nindent 4 }}
+spec:
+  replicas: {{ .Values.vars.frontend.count_replica }}
+  selector:
+    matchLabels:
+      {{- toYaml .Values.labelsfrontend | nindent 6 }}
+  template:
+    metadata:
+      labels:
+          {{- toYaml .Values.labelsfrontend | nindent 10 }}
+    spec:
+      containers:
+      - name: container-nginx-front-end
+        image: "docker.io/nginx:latest"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        volumeMounts:
+          - mountPath: /usr/share/nginx/html
+            name: volume-config
+            readOnly: true
+      resources:
+        {{- toYaml .Values.resources | nindent 8 }} # add ressources specified in values with correct indentation
+      volumes:
+      - name: volume-config
+        configMap:
+          name: config-map-frontend

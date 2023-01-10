@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-backend
+  namespace: {{ .Values.vars.namespace }}
+  labels:
+    {{- toYaml .Values.labelsbackend | nindent 4 }}
+spec:
+  replicas: {{ .Values.vars.backend.count_replica }}
+  selector:
+    matchLabels:
+      {{- toYaml .Values.labelsbackend | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- toYaml .Values.labelsbackend | nindent 8 }}
+    spec:
+      containers:
+      - name: container-backend
+        image: simowalter/backend-web-calculator:1.0
+        ports:
+        - containerPort: 8080
+      resources:
+        {{- toYaml .Values.resources | nindent 8 }} # add ressources specified in values with correct indentation

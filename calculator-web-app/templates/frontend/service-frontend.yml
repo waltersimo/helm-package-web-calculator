@@ -1,0 +1,18 @@
+---
+# service to manage pods of the frontend
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-frontend-calculator
+  namespace: {{ .Values.vars.namespace }}
+  labels:
+    {{- toYaml .Values.labelsfrontend | nindent 4 }}
+spec:
+  type: {{ .Values.vars.frontend.service.type }}
+  ports:
+  - port: {{ .Values.vars.frontend.service.port }}
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    {{- toYaml .Values.labelsfrontend | nindent 4 }}
